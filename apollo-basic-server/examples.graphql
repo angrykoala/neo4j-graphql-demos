@@ -90,7 +90,7 @@ mutation CreateMovieAndConnectToActor {
 
 
 ## Update
-mutation UpdateNeo {
+mutation UpdateNeoEvilTwin {
   updatePeople(
       where: {
         name: "Keanu Reeves"
@@ -105,7 +105,7 @@ mutation UpdateNeo {
 }
 
 ## Delete
-mutation DeleteEvilness {
+mutation DeleteEvilTwin {
   deletePeople(where: {name: "Seveer Unaek"}) {
     nodesDeleted
   }
