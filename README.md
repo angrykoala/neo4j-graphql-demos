@@ -1,15 +1,13 @@
 # Neo4j/GraphQL continuous learning session demo
 
-This is the demo material of the continuous learning session of the `@neo4j/graphql` library held the 20th of April, 2022.
-
+This is the demo material of the continuous learning session of the `@neo4j/graphql`.
 
 ## Demos
+To run the demos, you'll need npm and Node.js installed, as well as a running Neo4j database
 
-### Technical dive into library setup and usage
-The file `basic-test.js` sets a basic [Apollo server](apollographql.com/docs/apollo-server/) with [@neo4j/graphql](https://www.npmjs.com/package/@neo4j/graphql)
+All demos are self-contained in separate folders:
 
-1. `node basic-test.js`
-2. Got to `http://localhost:4000/`
-
-2. Subscriptions Demo
-3. Toolbox Demo
+1. Go to its folder
+2. Execute `npm install`
+3. Run `npm start`
+    * You may need to update the user/password settings in the file
