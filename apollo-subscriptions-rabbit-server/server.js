@@ -14,18 +14,6 @@ const RabbitMQPlugin=require('./rabbit')
 
 if(!process.argv[2]) throw new Error("Usage node server.js [port]")
 
-
-// Local Subscriptions
-// class SubscriptionsPlugin {
-//     constructor() {
-//         this.events = new EventEmitter();
-//     }
-//
-//     publish(eventMeta) {
-//         this.events.emit(eventMeta.event, eventMeta);
-//     }
-// }
-
 const NEO4J_URL = "bolt://localhost:7687"
 const NEO4J_USER = "neo4j"
 const NEO4J_PASSWORD = "dontpanic42"
@@ -67,7 +55,7 @@ async function main() {
     const server = new ApolloServer({
         schema,
         plugins: [
-            ApolloServerPluginDrainHttpServer({
+            ApolloServerPluginDrainHttpServer({ // Graceful stop
                 httpServer
             }),
             {
