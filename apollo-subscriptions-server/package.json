@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "@neo4j/graphql": "^3.1.0",
+    "@neo4j/graphql-plugin-subscriptions-amqp": "^1.0.0",
     "apollo-server-core": "^3.6.7",
     "apollo-server-express": "^3.6.7",
     "express": "^4.17.3",
