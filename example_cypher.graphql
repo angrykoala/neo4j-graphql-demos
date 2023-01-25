@@ -1,0 +1,49 @@
+type Movie {
+    title: String!
+    tagline: String
+    released: BigInt
+    actors: [Person!]! @relationship(type: "ACTED_IN", direction: IN, properties: "ActedInProperties")
+    neo: [Person!]!
+        @cypher(
+            statement: """
+            MATCH (this)-[r:ACTED_IN]-(p:Person)
+            WHERE "Neo" in r.roles
+            return p
+            """
+        )
+}
+
+interface ActedInProperties @relationshipProperties {
+    roles: [String]!
+}
+
+type Person {
+    name: String!
+    movies: [Movie!]! @relationship(type: "ACTED_IN", direction: OUT, properties: "ActedInProperties")
+    directedMovies: [Movie!]! @relationship(type: "DIRECTED", direction: OUT)
+    coActors: [Person!]!
+        @cypher(
+            statement: """
+            MATCH(this)-[:ACTED_IN]->(m:Movie)<-[:ACTED_IN]-(co:Person)
+            RETURN co
+            """
+            columnName: "co"
+        )
+    coActorsAndMovie: [CoActor!]!
+        @cypher(
+            statement: """
+            MATCH(this)-[:ACTED_IN]->(m:Movie)<-[:ACTED_IN]-(co:Person)
+            RETURN {name: co.name, movieTitle: m.title} as result
+            """
+            columnName: "result"
+        )
+}
+
+type CoActor {
+    name: String!
+    movieTitle: String!
+}
+
+type Query {
+    totalNodeCount: Int! @cypher(statement: "MATCH(n) RETURN COUNT(n) as count", columnName: "count")
+}
